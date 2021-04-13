@@ -1,0 +1,86 @@
+<div id = "pro" height = "100%">
+
+	<style>
+		.pro-scaffold {
+			height: 100%;
+			width: 100%;
+			margin-top: 30px;
+
+		}			
+
+		.instructions {
+			width: 40%;
+  			height: 100%;
+  			padding-right: 20%;
+		}
+
+		.sentence-frame{
+			margin-top: 20px;
+			border-style: solid;
+			border-width: 5px;
+			border-color: black;
+			overflow: scroll;
+			font-family: Arial;
+			font-weight: bold;
+      display: flex;
+      flex-direction: column;
+
+		}
+
+    #user-text-from-doc {
+      flex: 1;
+  		padding: 20px 20px 20px;
+		}
+
+
+	</style>
+
+
+
+
+
+		<div class = "pro-scaffold">
+
+			<div class = ".instructions">
+
+          <h3>Instructions</h3>
+			    <p>
+			    	Below is the text from the Doc. Please select an author you are trying to imitate, then press <b>Submit for Scoring</b> to see which sentences our model believes were written by the author.
+			    </p>
+
+				  <input type="radio" name ="author-selection" value="Austen, Jane" checked>
+				  <label for="author-austen">Jane Austen</label>
+				  <br>
+				  <input type="radio" name ="author-selection" value="Twain, Mark">
+				  <label for="author-twain">Mark Twain</label>
+
+				  <br><br>
+			      <button onclick="get_bert_probs()">Submit for Scoring</button>
+
+			    <br><br>
+
+          <div class = "loader"></div>
+
+
+
+			  <p id = "pro-instructions">
+			    	Sentences that were classified as likely being written by the selected author
+			    	are in <text style = "color:green;font-weight:bold">green</text>, and the others are  <text style = "color:red; font-weight:bold">red</text>. The model assigned a probability that each sentence wa written by the target author. You can sort the sentences by this probability to see if patterns emerge in the successful and unucesssful sentences.
+			      <br><br>
+			      <button onclick="changeSentenceOrder('index')">Order by Appearance</button>
+			      <br>
+			      <button onclick="changeSentenceOrder('ProbabilityRank')">Order by Probability</button>
+			    <br><br>
+        </p>
+			</div>
+
+
+			<div class = "sentence-frame">
+			     <div id="sentence-order-list"></div>
+
+			</div>
+
+
+		</div>
+
+</div>

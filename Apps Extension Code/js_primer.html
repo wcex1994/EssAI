@@ -1,0 +1,311 @@
+<script>
+
+    // Primer Globals
+    var BLURRED = false;
+		var IN_DIFF_MODE = false;
+		var ORIGINAL_SENTENCES = [];
+		var IN_DEMO_MODE = false;
+
+    function reset_primer(){
+
+        BLURRED = false;
+		    IN_DIFF_MODE = false;
+		    ORIGINAL_SENTENCES = [];
+		    IN_DEMO_MODE = false;
+
+      	$(".visualizations").hide();
+		    $(".loader").hide();
+
+    }
+
+    function focused (){
+      this.classList.add("focused")
+    }
+
+    function unfocused (){
+      this.classList.remove("focused")
+    }
+
+
+		function add_row_to_table(sentences){
+
+			var table = document.getElementById("sentence-body");
+			var rowNumber = 0; 
+			var sentences = JSON.parse(sentences);
+
+			for(s of sentences){
+			
+				var row = table.insertRow(rowNumber);
+				row.setAttribute("style", "height: 1px")
+        row.setAttribute("style", "vertical-align:middle")
+				row.setAttribute("class", "sentence-row")
+
+				row.insertCell(0).innerHTML = `<td>
+													<p class="original text-display">${s["sentence"]}</p>
+													<p class="diff text-display"></p>
+												</td>`;
+
+        row.insertCell(1).innerHTML =  `<td style = "height=100%;vertical-align:middle;">
+                                          <textarea class = "replication textarea-table" rows = "6"></textarea>
+                                        </td>`;
+
+
+				row.insertCell(2).innerHTML =  `<td style = "height=100%;vertical-align:middle;">
+                                          <textarea class = "notes textarea-table" 
+                                                    rows = "6"></textarea>
+                                        </td>`;
+				//row.insertCell(2).innerHTML =  `<p class="hint text-display">${s["blanked"]}</p>`;
+
+
+				rowNumber = ++rowNumber;
+
+			}
+		} 
+
+	function diff_text(){
+
+			var diffs = document.getElementsByClassName("diff");
+			var originals = document.getElementsByClassName("original");
+			var replications = document.getElementsByClassName("replication");
+			var n_sentences = Array(diffs.length).keys();
+			button = document.getElementById("diff-button");
+
+			if(IN_DIFF_MODE){
+				
+				$(".diff").hide()
+				$(".original").show()
+
+				button.textContent = 'See Differences'
+				IN_DIFF_MODE = false;
+
+			}else{
+				
+				for (i of n_sentences){
+					$(".diff").show()
+					$(".original").hide()
+					diffs[i].innerHTML = diffString(originals[i].innerHTML, replications[i].value);		
+				}
+
+				button.textContent = 'See Original Text'
+				IN_DIFF_MODE = true;
+
+			}
+		}
+
+		function blur_text(){
+
+			button = document.getElementById("blurButton")
+
+			if(BLURRED){
+				var color = "black";
+				var textShadow = "0 0 0 rgba(0,0,0,0)";
+				BLURRED = false;
+			//	button.textContent = 'Blur'
+			}else{
+				var color = "transparent";
+				var textShadow = "0 0 5px rgba(0,0,0,0.2)";
+				BLURRED = true;
+			//	button.textContent = 'Unblur'
+			}
+
+			for (s of document.getElementsByClassName("original")){
+				s.style.color = color;
+				s.style.textShadow = textShadow;
+			}
+
+		}
+
+
+
+    function compare_text(){
+      blur_text();
+      $(".notes").each(function (){
+          $(this).val("");
+      });
+
+      $("#notes_header").text("Reflections");
+
+    }
+
+
+    async function submit_replications(){
+      if(IN_DEMO_MODE){
+          sleep = (ms)=> new Promise(resolve => setTimeout(resolve, ms));
+          $(".loader").show();
+          await sleep(1000);
+          gen_visualization_block(sample_stylometrics);
+          $(".loader").hide();
+      }else{
+        submit_replications_genuine();
+      }
+    }
+
+		function submit_replications_genuine(){
+
+			var originals = document.getElementsByClassName("original");
+			var replications = document.getElementsByClassName("replication");
+			var n_sentences = Array(originals.length).keys();
+			var gathered = []
+			var send = true;
+ 			
+			for (i of n_sentences){
+	
+				if ("" == replications[i].value){
+					send = false;
+					alert("Please fill out all sentences!")
+					break
+				}else{
+					gathered.push({
+						index: i,
+						original_text: originals[i].innerHTML,
+						recreation: replications[i].value
+					})
+				}
+			}
+
+
+			if(send){
+				$(".loader").show();
+				call_aws(config.STYLOMETRY_API,
+	    		         "Austen",
+	    		         JSON.stringify({"text": gathered}),
+	    		         config.STYLOMETRY_LINK,
+	    		         gen_visualization_block);
+			}
+			
+		} 
+
+
+function download_json(){
+
+    function download (js){
+
+      //This helper function pulled from here: https://code-maven.com/create-and-download-csv-with-javascript
+      var hiddenElement = document.createElement('a');
+      hiddenElement.href = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(js));
+
+      hiddenElement.target = '_blank';
+      hiddenElement.download = 'session_data.json';
+      hiddenElement.click();
+    }
+
+ function get_as_array(cls, attr = "value"){
+        var elements = $(cls),
+            collection = [];
+
+        for (el of elements){
+          collection.push(el[attr]);
+        }
+
+        return collection;
+
+    }
+
+  var student_file = {originals : get_as_array(".original", attr = "innerHTML"),
+                      replications : get_as_array(".replication"),
+                      notes : get_as_array(".notes") }
+
+  download(student_file);
+
+}
+
+
+
+function download_csv1() {
+    var csv = 'Name,Title\n';
+    data.forEach(function(row) {
+            csv += row.join(',');
+            csv += "\n";
+    });
+ 
+    console.log(csv);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'session_data.csv';
+    hiddenElement.click();
+}
+
+
+
+		function reset_table(){
+
+			// Reset text area
+			document.getElementById("text-entry").value = "";
+
+      /*
+			button = document.getElementById("diff-button");
+			button.textContent = 'See Differences'*/
+
+      download_json();
+
+			// Reset sentence table body
+			$("#histogram svg").remove();
+			$(".visualizations").hide();
+			$("#metric-toggle").hide();
+			$("#sentence-body tr").remove();
+		}
+
+	  async function text_submit(){
+
+			  $(".loader").show();
+
+        if(IN_DEMO_MODE){
+          sleep = (ms)=> new Promise(resolve => setTimeout(resolve, ms));
+          await sleep(1000);
+          add_row_to_table(sample_split);
+        }else{
+
+          var text = document.getElementById("text-entry").value.replace(/\n/g, "  ");
+          call_aws(config.SPLITTER_API,
+                  'Austen',  
+                  JSON.stringify({"in_txt": text,"keep_pos":["PUNCT","CCONJ", "NOUN"],"stage":"prod"}),
+                  config.SPLITTER_LINK,
+                  add_row_to_table);
+        }
+
+	      $(".loader").hide();
+	    }
+
+	  function gen_visualization_block(data){
+
+	    var metrics = [ {metric : "wordCount", display : "Sentence Length (Number of Words)"},
+                      {metric : "avgWordLength", display : "Average Word Length"},
+                      {metric : "avgSyllablesPerWord", display : "Average Syllables per Word"},
+                      {metric : "NOUN", display : "Number of Nouns"}, 
+                      {metric : "PROPN", display : "Number of Prepositions"},
+                      {metric : "VERB", display : "Number of Verbs"},
+                      {metric : "ADJ", display : "Number of Adjectives"},
+                      {metric : "ADV", display : "Number of Adverbs"},
+                      {metric : "PRON", display : "Number of Pronouns"},
+			                {metric : "CCONJ", display : "Number of Conjunctions"} ];
+
+	    	init_metric_button(data, metrics);
+	    	gen_histogram(data, metrics, d3.select("#metric-toggle").property("value"));
+	    	
+	    	$(".visualizations").show();
+	    	$(".loader").hide();
+	    }
+
+	  function init_metric_button(data, metrics){
+
+			var metric_button = d3
+				.select("#metric-toggle")
+				.selectAll("options")
+				.data(metrics)
+				.enter()
+				.append("option")
+				.text((d) => d.display)
+				.attr("value" ,(d) => d.metric);
+
+			d3.select("#metric-toggle").on("change", function (d){
+				return gen_histogram(data, metrics, d3.select(this).property("value"));
+			});
+
+	  }
+
+
+
+
+
+</script>

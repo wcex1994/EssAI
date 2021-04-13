@@ -1,0 +1,37 @@
+<script>
+  
+  	var config = {
+		  SPLITTER_LINK : 'https://ifbioltm2g.execute-api.us-east-2.amazonaws.com/default/splitter1',
+		  SPLITTER_API : "sT2cZuc7FN5HXXOgl0oG99tsKqs5yWBAeVIPuWf0",
+		  STYLOMETRY_LINK : 'https://naocgyef4k.execute-api.us-east-2.amazonaws.com/default/stylometry_beta',
+		  STYLOMETRY_API: 'G0W5V6A6WB9JcVms3IKxN5TVSYCVZX7z7IX5KgnT'
+		};
+
+    async function call_aws(api_key, author_name, text, end_point, callback){
+        	
+        	const chunk_size = '128';
+
+        	var myHeaders = new Headers();
+	       	myHeaders.append("x-api-key",  api_key);
+	        myHeaders.append("Content-Type", "application/json");
+	        
+	        var requestOptions = {
+	          method: 'POST',
+	          headers: myHeaders,
+	          body: text,
+	          redirect: 'follow'
+	        };
+
+	        var out_val = "";
+	        await fetch(end_point + "?chunk_size=" + chunk_size, requestOptions)
+	          .then(response => response.text())
+	          .then(result => out_val = result)
+	          .catch(error => console.log('error', error));
+
+	        console.log(end_point + "?chunk_size=" + chunk_size)
+
+	        console.log("AWS return JSON: " + out_val);
+
+	        callback(out_val);
+    }
+</script>

@@ -1,0 +1,229 @@
+
+<script>
+  function gen_histogram(input_data, metrics, column){
+
+    //=========================================================================
+    // Format Data
+    //=========================================================================
+
+    // Reset
+    d3.selectAll("#histogram svg").remove()
+
+    // Format data
+    let data = [... new Set(JSON.parse(input_data))];
+    data.forEach((d) => d.index = ++d.index);
+    const n_sentences = d3.max(data.map(d => d.index));
+
+    //=========================================================================
+    // Set Dimensions
+    //=========================================================================
+
+    var width = 1000,
+        height = 500,
+        default_opacity = 0.9;
+
+    var svg = d3.select("#histogram")
+      .append("svg")
+      .attr("width", width)
+      .attr("height", height);
+
+    var margin = { top: 30, right: 180, bottom: 50, left: 60 },
+        iwidth = width - margin.left - margin.right,
+        iheight = height - margin.top - margin.bottom
+        axis_label_shift = 40;
+
+    var barWidth = iwidth / (2 * n_sentences),
+        barSpace = 0.3 * barWidth;
+
+    var y_axis_scaling = 1.5;
+    var y_max = y_axis_scaling * Math.ceil(d3.max(data.map((d)=> d[column])));
+
+    //=========================================================================
+    // gDrawing
+    //=========================================================================
+
+    var gDrawing = svg
+                .append("g")
+                .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+    //=========================================================================
+    // Define Scales
+    //=========================================================================
+
+    var x = d3
+      .scaleLinear()
+        .range([0, iwidth])
+        .domain([0, n_sentences + 1]);
+
+    var y = d3
+        .scaleLinear()
+        .range([iheight, 0])
+        .domain([0, y_max]);
+
+    //=========================================================================
+    // Set Axes
+    //=========================================================================
+      
+    function append_axis(axis, label, y_translate, transform_fn){
+      gDrawing
+          .append("g")
+          .attr("transform", `translate(0,${y_translate})`)
+          .call(axis)
+          .attr("stroke-width", "3px")
+          .attr("font-size", "15")
+          .attr("font-weight", "bold")
+          .append("text")
+          .style("fill", "black")
+          .style("font-size", "12pt")
+          .text(label)
+          .attr("transform", transform_fn)
+    }
+
+    // x-axis
+    //.tickFormat(()=>{return metric;}))	
+    append_axis(d3.axisBottom(x).ticks(Array(n_sentences).keys()), 
+          "Sentences in Order", 
+          iheight, 
+          `translate(${iwidth/2},${axis_label_shift})`);
+
+    // y-axis
+    append_axis(d3.axisLeft(y), 
+          "Metric", 
+          0, 
+          `translate(${-axis_label_shift},${(iheight/2) - 50})rotate(-90)`);
+
+    //=========================================================================
+      // Create Mouseover / Mouse Under
+      //=========================================================================
+
+      function color_by_author(d){
+        return (d.author == 'original_text') ? 'green' : 'steelblue';
+      }
+
+      function on_mouse_over(d){
+
+        // filter down to bars with same index
+        var index = d.index;
+        var selected = d3.selectAll("rect").filter((d) => d.index == index);
+
+        // Lower opacity for selected rectangle and its pair
+        selected.style("opacity", 0.4);
+
+        // Establish distances
+        const font_size = 12;
+        const gap = 3;
+
+        // Display sentences corresponding to index
+        svg
+            .selectAll("text-display")
+            .data(selected.data())
+            .enter()
+            .append("text")
+            .attr("class", "highlighted")
+            .attr("x", 0.1 * width)
+            .attr("y", (d) => (d.author == 'original_text') ? 50 : 50 + font_size + gap)
+            .style("font-size", font_size)
+            .style("font-weight", "bold")
+            .attr("fill", color_by_author)
+            .text((d) => d.Text);
+    
+
+      }
+
+      function on_mouse_out(d){
+
+          // return bars to default opacity
+          d3.selectAll("rect")
+            .style("opacity", default_opacity);
+
+          // remove all text
+          svg
+            .selectAll("text.highlighted")
+            .remove();
+
+      }
+
+        //=========================================================================
+      // Configure Bar Chart
+      //=========================================================================
+
+      var bars = gDrawing
+        .selectAll("bar")
+        .data(data)
+        .enter()
+        .filter((d) => d.index <= n_sentences)
+        .append("rect")
+        .attr("width", barWidth-barSpace)
+        .style("opacity", default_opacity)
+        .style("stroke", "black")
+        .attr("x", (d) => x(d.index))
+        .attr("y", (d) => y(d[column]))
+        .attr("height", (d) => iheight - y(d[column]))
+        .attr("fill", color_by_author)
+        .attr("transform", (d) => {
+          if(d.author == "original_text"){
+            return `translate(${-(barWidth-barSpace)},0)`
+          }else{
+            return `translate(0,0)`
+          }
+        })
+        .on("mouseover", on_mouse_over)
+        .on("mouseout", on_mouse_out);
+
+      //=========================================================================
+      // Add Legend
+      //=========================================================================
+
+      var legend_padding = 3,
+          box_dim = 10,
+          x_legend = 120,
+          y_legend = 100;
+
+      var legend_data = [{author : "original_text",
+                display : "Original Text",
+                color : "green",
+              y_translate : 0},
+                {author : "recreation",
+                display : "Student Text",
+                color : "steelblue",
+                y_translate : 30}]
+
+      var legend = svg.selectAll("legend")	
+        .data(legend_data)
+        .enter();
+
+      // Add boxes
+      legend
+        .append("rect")
+        .attr("x", x_legend)
+        .attr("y", (d) => y_legend + d.y_translate)
+        .attr("height", box_dim)
+        .attr("width", box_dim)
+        .style("fill", (d) => d.color);
+
+      // Add text
+      legend
+        .append("text")
+        .attr("x", x_legend + box_dim + legend_padding)
+        .attr("y", (d) => y_legend + box_dim + d.y_translate)
+        .style("font-size", 12)
+        .style("font-weight", "bold")
+        .text((d) => d.display);
+
+      //=========================================================================
+      // Add Average lines
+      //=========================================================================
+
+      var averages = data.reduce((s1, s2) => s1[column] + s2[column]) / n_sentences;
+
+      var average_lines = svg
+        .selectAll("mean-lines")
+        .attr("x1", 120)
+        .attr("x2", 400)
+        .attr("y1", averages)
+        .attr("y2", averages);
+
+  }
+
+
+</script>

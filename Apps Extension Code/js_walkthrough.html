@@ -1,0 +1,130 @@
+<script>
+
+    var TYPING_SPEED = 5;
+    var SCROLL = false;
+    const MAX_UNROLL = 3;
+
+  	var walkthrough_step_no = 0;
+		var walkthrough_steps = [() => document.getElementById("text-entry").innerHTML = sample_text,
+                             //animation_button(instruction_1, "instruc_1"),
+								             animation_button(text_submit, "submit-author-text-button"),
+                             () => blur_text(),
+                             () => blur_text(),
+		                         () => replace_with_sample("notes", sample_notes),
+                           //  return_to_top,
+                             () => replace_with_sample("notes", sample_entities),
+                          //   return_to_top,
+		                         animation_button(blur_text, "blurButton"),
+								             () => replace_with_sample("replication", sample_attempts),
+                          //   return_to_top,
+								             animation_button(compare_text, "unBlurButton"),
+                             () => replace_with_sample("notes", sample_reflections),
+								             animation_button(submit_replications, "stylometry-button"),
+                             return_to_top,
+								             animation_button(reset_table, "reset-button"),
+                             reset_primer];
+
+
+    function instruction_1 (){
+
+      document.getElementById("text-entry").innerHTML = sample_text
+    }
+
+		function next_item(){
+			walkthrough_steps[walkthrough_step_no]();
+			walkthrough_step_no ++;
+	  }
+
+		function animation_button(f, button_id){
+			async function closure (){
+				add_focus(button_id);
+				await sleep(1000);
+				f();
+				remove_focus(button_id);
+			}
+			return closure;
+
+		}
+
+    function add_focus (id){
+			document.getElementById(id).classList.add("focused")
+		}
+
+		function remove_focus (id){
+			document.getElementById(id).classList.remove("focused")
+		}
+
+    // Sleep code taken from: https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
+  async function slow_print_text(text, element, sleep_duration, attr = "innerHTML"){
+
+    if(SCROLL){
+      // Credit for scroll configuration: 
+      //https://stackoverflow.com/questions/8922107/javascript-scrollintoview-middle-alignment
+      element.scrollIntoView({
+          behavior: 'auto',
+          block: 'center',
+          inline: 'center'
+      });
+    }
+
+      var i = 0;
+
+      while (i < text.length) {
+
+        await sleep(sleep_duration);
+        var current = element[attr];
+        
+        if(current === undefined){
+          current = "";
+        }
+        element[attr] = current.concat(text[i]);
+        i ++; 
+
+      }
+
+      await sleep(1);
+  }
+
+  async function replace_with_sample(cls, replace){
+
+    var data = document.getElementsByClassName(cls);
+    var index = 0;
+
+    while(index <= MAX_UNROLL){
+      element = data[index];
+      element["value"] = "";
+      await slow_print_text(replace[index], element, TYPING_SPEED, attr = "value");
+      index ++;
+    }
+  }
+
+  function return_to_top(){
+    window.scroll({top: 0, behavior: "smooth"})
+  }
+
+  function turn_on_demo_mode(){
+    
+    if(IN_DEMO_MODE){
+      var content = "Walkthrough";
+    }else{
+      var content = "Exit Walkthrough";
+    }
+
+    document.getElementById("demo-mode-button").textContent = content;
+    IN_DEMO_MODE = !IN_DEMO_MODE;
+
+  }
+
+  document.addEventListener("keypress", function(event) {
+    if ((event.keyCode == 13) && IN_DEMO_MODE) {
+      next_item();
+    }
+  });
+
+
+</script>

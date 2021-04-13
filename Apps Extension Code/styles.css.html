@@ -1,0 +1,162 @@
+<style>
+
+		body{
+			font-size: 15px;
+		}
+
+    html p textarea {
+      scroll-behavior: smooth;
+      font-family: Arial, sans-serif;
+    }
+
+  
+		textarea {
+ 			border-style: solid;
+  		border-width: 5px;
+  		padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+		}
+
+    li{
+      margin-bottom: 5px;
+    }
+
+
+		button{
+			border: "5px";
+			border-radius: 8px;
+			font-weight: bold;
+		}
+
+		table{
+			font-size: 12px;
+			font-weight: bold;
+			border: "3px";
+			border-collapse: collapse;
+      box-shadow: 9px 9px 10px gray;
+		}
+
+		th{
+			border-width: 5px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			font-weight:bold;
+			font-size:15px;
+		}
+
+		del{
+			color: red;
+		}
+		ins{
+			color: green;
+		}
+		ol{
+			font-size: 15px; ;
+		}
+		b{
+			font-size: 15px; ;
+		}
+
+		#text-entry {
+ 			border-style: solid;
+  		border-width: 5px;
+  		padding: 20px 20px 20px;
+      font-size: 12px;
+		}
+
+		.text-display{
+			font-size: 12px;
+			position: relative;
+			margin-left: 10px;
+			margin-right: 10px;
+      font-weight: normal;
+		}
+		.focused{
+			border-style: solid;
+			border-width: 5px;
+			border-color: red;
+		}
+
+		#metric-toggle{
+			border: "3px";
+			font-weight: bold;
+		}
+
+		#scaffold{
+			margin-left: 50px;
+			margin-right: 50px;
+			margin-bottom: 100px;
+			font-family: Arial, sans-serif;
+			background-color: "#F0FFFF";
+		}
+
+    .notes:hover {
+      color: red;
+    }
+
+    .original:hover {
+      color: red;
+    }
+
+    .replication:hover {
+      color: red;
+    }
+
+
+		/* from https://stackoverflow.com/questions/10943579/adjust-the-textarea-height-and-width-to-fit-in-td-of-a-table*/
+		.textarea-table {
+        width: 100%;
+        font-family: Arial, sans-serif;
+		    border: none;
+		    font-size: 12px;
+        -webkit-box-sizing: border-box; /* <=iOS4, <= Android  2.3 */
+        -moz-box-sizing: border-box; /* FF1+ */
+            box-sizing: border-box; /* Chrome, IE8, Opera, Safari 5.1*/
+		}
+
+
+  
+	  /*Loader code comes from https://www.w3schools.com/howto/howto_css_loader.asp*/
+		.loader {
+		  border: 16px solid #f3f3f3; /* Light grey */
+		  border-top: 16px solid #3498db; /* Blue */
+		  border-radius: 50%;
+		  width: 80px;
+		  height: 80px;
+		  animation: spin 2s linear infinite;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+		}
+
+		@keyframes spin {
+		  0% { transform: rotate(0deg); }
+		  100% { transform: rotate(360deg); }
+		} 
+
+		#header-essai{
+			display: inline;
+		}
+
+		.header-button {
+			margin-left: 50px;
+			padding: 10px;
+			border: none;
+			background: none;
+			font-size: 18px;
+			font-weight: bold;
+
+		}
+
+    #mascot{
+      width: 45%;
+      float: right;
+    }
+
+    //Credit to https://stackoverflow.com/questions/21168521/table-fixed-header-and-scrollable-body
+    .frozen          { overflow: auto; height: 100px; }
+    .frozen thead th { position: sticky; top: 0; z-index: 1; }
+
+	</style>

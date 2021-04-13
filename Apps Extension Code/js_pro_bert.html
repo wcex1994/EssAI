@@ -1,0 +1,165 @@
+	<script>
+
+		var fontSize = 15;
+		var spaceSize = 2;
+
+		function changeSentenceOrder(column){
+		  d3.selectAll(".user_sentences")
+		    .transition()
+		    .duration(800)
+		    .ease(d3.easeLinear)
+		    .attr("y", function(d, i){
+		      return (d[column]  * (fontSize + spaceSize));
+		    });
+		}
+
+		function sentence_list_callback(){
+		  generate_sentence_list( "scatter.json");
+		}
+
+		function generate_sentence_list(sentenceLink){
+		  d3.json(sentenceLink, create_sentence_list);
+		}
+
+    // CALLBACK
+    function create_sentence_list(myData) {
+
+		    //=========================================================================
+		    // Set Initial Formatting
+		    //=========================================================================
+		    var height_distortion = 1.5, 
+		        width = 5000,
+		        height = fontSize * myData.length * height_distortion,
+		        defaultOpacity = 0.4;
+
+		    var svg = d3.select("#sentence-order-list")
+		      .append("svg")
+		      .attr("width", width)
+		      .attr("height", height);
+
+		    //=========================================================================
+		    // Properly cast all incoming values
+		    //=========================================================================
+		    myData.forEach(function(d){
+		      d.Author = d.Author;
+		      d.Text = d.Text;
+		      d.index =  +d.index;
+		      d.ProbabilityRank =  +d.ProbabilityRank;
+		      d.sentenceLengthByChar = +d.sentenceLengthByChar;
+		      d.shannonEntropy = +d.shannonEntropy;
+		      d.Probability = +d.Probability;
+		    })
+
+		    //=========================================================================
+		    // Set Dimensions
+		    //=========================================================================
+
+		    var margin = { top: 30, right: 180, bottom: 30, left: 10 },
+		      iwidth = width - margin.left - margin.right,
+		      iheight = height - margin.top - margin.bottom
+		      axisLabelShift = 40;
+
+		    //=========================================================================
+		    // gDrawing
+		    //=========================================================================
+
+		    var gDrawing = svg
+		      .append("g")
+		      .attr("transform", `translate(${margin.left}, ${margin.top})`);
+
+		    //=========================================================================
+		    // Generate Text List
+		    //=========================================================================
+
+		    var colorScale = d3
+		      .scaleLinear()
+		      .domain([0, 100])
+		      .range(["red", "green"]);
+
+		    var scatter = gDrawing
+		      .append('g')
+		      .selectAll("text")
+		      .data(myData)
+		      .enter()
+		      .filter(function(d) { return d.Author == "User";})
+		      .append("text")
+		      .attr("class", "user_sentences")
+		      .text(function(d) {return d.Text; })
+		      .attr("x", 10) 
+		      .attr("y", function(d, i) {
+		        return (i * (fontSize + spaceSize));
+		      })
+		      .attr("fill", function(d, i){
+		      	if (d.Probability > 70){
+		      		return "green"
+		      	}else{
+		      		return "red"
+		      	}
+		        //return colorScale(d.Probability);
+		      });
+
+		}
+
+
+    async function call_aws_bert(author_name, in_txt, key, end_point){
+      const chunk_size = '128';
+      var myHeaders = new Headers();
+      myHeaders.append("x-api-key", key);
+      myHeaders.append("Content-Type", "application/json");
+      in_txt = in_txt.replace(/\n/g, "  ");
+      console.log("SYE-in_txt: " + in_txt);
+
+      //var raw = JSON.stringify({"in_txt":in_txt,"author_name":author_name,"stage":"test"});
+      var raw = JSON.stringify({"in_txt":in_txt,"author_name":author_name,"stage":"prod"});
+      console.log("DEBUG: ");
+      console.log(raw);
+
+      var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
+
+      var out_val = " ";
+      await fetch(end_point + "?chunk_size=" + chunk_size, requestOptions)
+      .then(response => response.text())
+      .then(result => out_val = result)
+      .catch(error => console.log('error', error));
+
+      console.log("SYE-aws_out_txt: " + out_val);
+      create_sentence_list(JSON.parse(out_val));
+    }
+
+
+		function get_bert_probs1(){
+      var demo = 0;
+      var author = $('input[name="author-selection"]:checked').val();
+      var names = author.split(",");
+      var surname = names[0];
+
+      if (demo == "1") {
+        $("#user-text-from-doc").hide()
+        alert(author);
+        console.log(sample_sentences);
+        create_sentence_list(sample_bert);
+      } else{
+        console.log("SYE-get_bert_probs");
+        console.log("SYE-1: " + docText);
+        console.log("SYE-1-a: " + surname);
+        var key1 = "f2WgB6TadM8Ij7a1KLna4aQ3N0DyRf9faGjKpPK1";
+        var end1 = "https://x6kh6mm5se.execute-api.us-east-2.amazonaws.com/default/BERT_Inference";
+        call_aws_bert(surname, docText, key1, end1);
+      }
+    }
+
+
+		function get_bert_probs0(){
+      $("#user-text-from-doc").hide()
+			var author = $('input[name="author-selection"]:checked').val();
+			alert(author);
+      console.log(sample_sentences);
+      create_sentence_list(sample_sentences);
+		}
+
+	</script>

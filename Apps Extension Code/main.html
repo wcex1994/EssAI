@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <title>Sentence Level Visualizations</title>
+
+  <!--
+    Issues:
+     - Pressing "Add text mulitple times" causes duplication
+     - Toy Spinner
+     
+     - Hard Coding the fetched data
+
+     - Get the named entities
+     - Change walkthrough Primer Demo Walkthrough (Italics)
+     - Connect actual BERT Call
+     - Refine download
+     - For download: https://code-maven.com/create-and-download-csv-with-javascript
+
+    -->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://d3js.org/d3.v4.js"></script>
+  
+  <?!=HtmlService.createHtmlOutputFromFile('styles.css').getContent()?>
+  <?!=HtmlService.createHtmlOutputFromFile('js_histogram').getContent()?>
+  <?!=HtmlService.createHtmlOutputFromFile('js_api_call').getContent()?>
+  <?!=HtmlService.createHtmlOutputFromFile('js_samples').getContent()?>
+  <?!=HtmlService.createHtmlOutputFromFile('js_primer').getContent()?>
+  <?!=HtmlService.createHtmlOutputFromFile('js_pro').getContent()?>
+  <?!=HtmlService.createHtmlOutputFromFile('js_walkthrough').getContent()?>
+
+
+</head>
+
+<body >
+
+
+<div id = "scaffold">
+
+  <?!=HtmlService.createHtmlOutputFromFile('page_header').getContent()?>
+  <?!=HtmlService.createHtmlOutputFromFile('page_home').getContent()?>
+  <?!=HtmlService.createHtmlOutputFromFile('page_pro').getContent()?>
+  <?!=HtmlService.createHtmlOutputFromFile('page_primer').getContent()?>
+
+</div>
+
+
+  <script>
+
+		//=======================================================================================
+		// Initialize
+		//=======================================================================================
+
+		function hide_all_but(id){
+			$("#primer").hide();
+			$("#home").hide();
+			$("#pro").hide();
+			$(id).show();
+		}
+
+    var docText = <?= docText ?>;
+
+		hide_all_but("#home");
+    reset_primer();
+    reset_pro(docText);
+
+	</script>
+
+</body>
+</html>
