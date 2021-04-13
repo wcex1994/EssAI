@@ -1,0 +1,56 @@
+[
+    {
+        "index":0,
+        "Author":"User",
+        "Text":"\nI went to the beach and stretched myself out.\n\n",
+        "Probability":65,
+        "ProbabilityRank":5.0
+    },
+    {
+        "index":1,
+        "Author":"User",
+        "Text":"A ferryboat trudged across the river, devoid of any other lights.\n\n",
+        "Probability":46,
+        "ProbabilityRank":3.0
+    },
+    {
+        "index":2,
+        "Author":"User",
+        "Text":"The moon rose and I become aware of the \n\n",
+        "Probability":96,
+        "ProbabilityRank":8.0
+    },
+    {
+        "index":3,
+        "Author":"User","Text":"I like to eat eggs and toast.\n\n",
+        "Probability":64,
+        "ProbabilityRank":4.0
+    },
+    {
+        "index":4,
+        "Author":"User","Text":"And fish - fish is very tasty.\n\n",
+        "Probability":90,
+        "ProbabilityRank":6.0
+    },
+    {
+        "index":5,
+        "Author":"User",
+        "Text":"Do I like eggs or toast or fish more?",
+        "Probability":45,
+        "ProbabilityRank":2.0
+    },
+    {
+        "index":6,
+        "Author":"User",
+        "Text":"It's difficult to say.",
+        "Probability":95,
+        "ProbabilityRank":7.0
+    },
+    {
+        "index":7,
+        "Author":"User",
+        "Text":"But I think I like fish more.\n\n",
+        "Probability":22,
+        "ProbabilityRank":1.0
+    }
+]
