@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>EssAI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+  margin: 0;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  background-color: #1abc9c;
+  padding: 15px;
+  text-align: center;
+}
+
+#navbar {
+  overflow: hidden;
+  background-color: #333;
+  z-index: 999;
+  /*position: absolute;*/
+  /*padding-left: 250px;*/
+  width: 1200px;
+  margin: auto;
+  /*padding: 50px;*/
+}
+
+#navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+
+}
+
+#navbar a:hover:not(.active) {
+  background-color: #ddd;
+  color: black;
+}
+
+#navbar a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.content {
+  padding: 20px 50px 20px 50px;
+  font-size: 17;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  /*width: 100%;*/
+  width: 1200px;
+  margin: auto;
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+#wrapper {
+  /*border: 1px solid #000;*/
+  width: 1200px;
+  margin: auto;
+}
+
+.container {
+  position: relative;
+  text-align: center;
+  
+  
+}
+
+.centered {
+  position: absolute;
+  color: white;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+.team_info{
+  text-align: center;
+  /*width: 150px;*/
+  width: 240px;
+  /*padding: 50px 50px;*/
+}
+
+.team_photo{
+
+  background-color: white;
+  border-radius: 50px;
+  /*border: 1px solid #ddd;*/
+/*  padding-left: 5%;
+  padding-right: 5%;*/
+  /*width: 80%;*/
+  width: 240px;
+  height: 420px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+
+}
+.team_photo img{
+  width: 90%;
+  max-height: 80%;
+  /*height: auto;*/
+  border-radius: 50px;
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+
+}
+
+/*.text{
+  font-size: 
+}*/
+</style>
+</head>
+
+<body>
+    <div class="container" id="home">
+        <img src="EssAI.png" alt="pen" style="width:1200px;height:500px;">
+        <br><br>
+    </div>
+
+    <div id="navbar">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#features">Features</a>
+        <a href="#demo">Demo</a>
+        <a href="#details">Details</a>
+        <a href="#team">About Us</a>
+    </div>
+
+    <div id="wrapper">
+        <div class="content" id="about">
+            <br>
+            <h1 id="about">About</h1>
+            <p><strong>Writing is a major curriculum in North America's education system. Many creative writing courses start with imitating well-known authors’ styles as the first step of understanding English writing, and hopefully help develop one’s own style. The overall process requires continuous practices and useful instructor feedback, which is both time and resource intensive.
+              <br><br>To help make writing practice more scalable, EssAI provides online exercises that ask students to replicate the styles of master writers as Jane Austen or Mark Twain, and then use text classification (BERT) and stylometric analysis to provide instant, quantified feedback on the similarities and differences to their target. We intend to use our MVP to contribute to peer and industry learning about how to help students systematically develop their (creative) writing skills through imitation and deliberate practice.
+            </p>
+        </div>
+
+
+        <div style="background-color:#CDCDCD" id="features">
+            <div class="content">
+                <br>
+                <h1 id="features">Features</h1>
+                <p>
+                  <ul>
+                    <li>Sentence Level Comparison to Author’s Style - User can identify which sentence is a good representation of the target author’s style and which to enhance</li>
+                    <li>Top Metrics for Author - User can compare to top five most important stylometry metrics<sup>[2]</sup> for the author </li>
+                    <li>Sentence Imitation Practice - User can perform Benjamin Franklin style writing<sup>[1]</sup> practice</li>
+                  </ul>
+                  <br>
+                  <p>
+                    <sub>[1] https://thewritepractice.com/writing-lessons-benjamin-franklin/</sub>
+                    <br><sub>[2] https://github.com/Hassaan-Elahi/Writing-Styles-Classification-Using-Stylometric-Analysis </sub>
+                  </p>
+                </p>
+            </div>
+        </div>
+
+
+        <div class="content" id="demo">
+                <br />
+                <h1 id="demo">Demo</h1>
+                <p>
+                  <strong>[TODO: Add one GIF/Video]</strong>
+                </p>
+        </div>
+
+        <div class="content" id="details" style="background-color:#CDCDCD">
+          <br />
+          <h1 id="details">Details</h1>
+          <ol>
+            <li>Solution Overview</li>
+            <p>
+              Users will first type in paragraphs to be evaluated and select the author to compare with. EssAI will clean the input texts and split them into sentence-level for BERT evaluation, which will return classification probabilities. Users will see color-coded sentences based on probabilities. Meanwhile, EssAI will also calculate values for the top five most important metrics for the target author as supportive feedback for potential improvement.
+              <br><br>If users want deliberate practice before the evaluation, EssAI also provides an environment for sentence-by-sentence imitation where users will select a sample paragraph from the author, take notes, blur the original sentences, and try to rewrite the sentence. Popular stylometric metrics based on user feedback<sup>[1]</sup> will also be calculated for each sentence. 
+            </p>
+            <br><br>
+            <li>System Architecture</li>
+            <br>
+            <img alt="lambda" src="lambda.png" style="width:1000px;height:500px;">
+            <p>
+                <br>There are two major UIs for our project - one Google Doc Adds-on for BERT evaluation and another adds-on option for sentence-level deliberate practice.
+                <br><br>We deployed the data manipulation pipelines in AWS Lambda, used Google Colab and Azure Machine Learning Service (AML) to train and track models, and deployed a real-time inference endpoint for each author on Azure Kubernetes Services (AKS) with GPU. Depending on the frontend request, Lambda will either return stylometric metrics calculation or trigger BERT inference.
+                <br><br>Due to cost management, we paused our AKS cluster most of the time. If you want to have a demo, please contact us.
+            </p>
+            <br><br>
+            <li>Model Architecture - BERT</li>
+            <br>
+            <img alt="bert" src="bert.png" style="width:1000px;height:700px;">
+            <p>
+              Bidirectional Encoder Representations from Transformers (BERT) is published by Google AI in 2017, with application of the bidirectional training of Transformer, a popular attention model, to language modelling [2]. By using a masked language model, it is now possible to learn the context of each word from the words appearing both before and after it. 
+              <br><br>We used the pre-trained BERT model (BERT-base) with 12-layer, 768-hidden, 12-heads, 110M parameters that was trained on English text using 3.3 Billion words total [3]. We freezed the entire architecture and attached a dense layer and a softmax layer to the architecture as fine-tuning for classification. 
+              <br><br>Additionally, to understand better of how BERT explains the style classification, instead of a blackbox, we used an open-source interpretability library - interpret-text [4]. The advantage is being able to visualize word-level local feature importances to see what brings positive importance to the classification of the texts. However, as an overhead, the library required to use its own BERT wrapper (over Hugging Face implementation) which restricts some tuning opportunities. 
+              <br><br>We mostly followed the BertAA: BERT fine-tuning for Authorship Attribution<sup>[5]</sup> implementation. One difference we made is that instead of all authors being in one BERT model, we separate each write for one model. Because our users would not care how similar they are to another writer, and the BERT model should serve its purpose to identify similarity to the one target author selected. 
+            </p>
+            <br><br>
+            <li>Model Evaluation</li>
+            <p>
+              We use classification accuracy as the evaluation metric. Different authors have very distinctive accuracies. We are able to reach 99.1% for Jane Austen and 95.4% for Mark Twain. For Scott Fitzgerald and Charles Dickens, we ended at 60.3% and 72.6%. 
+              <br><br>To enhance the accuracy, we first tried to expand the datasets. Since we trained one BERT model for each author, each can have its own dataset. Thus, we included various other random authors’ books, which helped BERT identify Mark Twain better. We also tuned several hyper-parameters such as epochs, batch size, and max token lengths, but they only enhanced the accuracy a little. Unfortunately with the limitation of the BERT wrapper we implemented with interpret-text, there are only few tuning parameters available. Moreover, we tried to use stylometric metric values as proxies for representing the text style, and see if a simple logistic regression can be a good model. We did not see much benefit out of the base model on the sentence level classification. 
+              <br><br>For the test dataset, we used blog corpus [6] to see how “common” our BERT models would mark one blog as having similar style to these authors. It should not identify the majority as positive with high probability. The BERT models for Jane Austen and Mark Twain matched our assumption, but the other two did not. 
+              <br><br>With concerns of Scott Fitzgerald and Charles Dickens accuracies and potential misleading results, we decided to restrict our scope to be Jane Austen and Mark Twain for our MVP.
+            </p>
+            <br><br>
+            <li>Model Future Development</li>
+            <p>
+              By running the AutoML pipelines with BERT for Scott Fitzgerald and Charles Dickens, we see models can reach 99.18% and 97.56% respectively with the existing datasets. The limitation might come from our BERT wrapper with interpret-text. Future development can look at implementing with Hugging Face models with more tuning opportunities. 
+              <br><br>Additionally, it will be interesting to see a combination of BERT text inputs and stylometric values into one logistic regression to see if it helps capture the writing style better. 
+            </p>
+            <br><br>
+            <li>References</li>
+              <br>[1]: https://github.com/Hassaan-Elahi/Writing-Styles-Classification-Using-Stylometric-Analysis
+              <br>[2]: https://towardsdatascience.com/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270
+              <br>[3]: https://arxiv.org/pdf/1706.03762.pdf
+              <br>[4]: https://github.com/interpretml/interpret-text
+              <br>[5] http://publications.idiap.ch/downloads/papers/2020/Fabien_ICON2020_2020.pdf
+              <br>[6] https://u.cs.biu.ac.il/~koppel/BlogCorpus.htm        
+          </ol>
+        </div>
+
+        <div style="background-color:white">
+            <br />
+            <div class="content">
+                <br />
+                <h1 id="team">About Us</h1>
+                <p>
+                  We are a team of UC Berkeley Master of Information and Data Science students. Our mission is to use the latest advances in data science to facilitate general education in a scalable way. 
+                </p>
+                <p>
+                    <h4>Team Members</h4>
+                    <table cellpadding="24px">
+                        <tr>
+                            <td>
+                                <div class="team_photo">
+                                    <img alt="Kyle Photo" src="kyle.png">
+                                    <div class="team_info">
+                                        <br><br><p>Kyle Eschen<br />
+                                            <a href="mailto:kyleeschen@ischool.berkeley.edu">kyleeschen@ischool.berkeley.edu</a><br />
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="team_photo">
+                                    <img alt="Girija Photo" src="girija.png">
+                                    <div class="team_info">
+                                      <br><br><p>Girija Ghali<br />
+                                            <a href="mailto:girijaghali@ischool.berkeley.edu">girijaghali@ischool.berkeley.edu</a><br />
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="team_photo">
+                                    <img alt="Hailey Photo" src="hailey.png">
+                                    <div class="team_info">
+                                      <br><br><p>Hailey Wu<br />
+                                            <a href="mailto:haileywu@ischool.berkeley.edu">haileywu@ischool.berkeley.edu</a><br />
+                                        </p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="team_photo">
+                                    <img alt="Stanley Photo" src="stanley.png">
+                                    <div class="team_info">
+                                      <br><br><p>Stanley Ye<br />
+                                        <a href="mailto:stanley.ye@berkeley.edu">stanley.ye@berkeley.edu</a><br />
+                                      </p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </p>
+            </div>
+        </div>
+        <script>
+        window.onscroll = function() { myFunction() };
+
+        var navbar = document.getElementById("navbar");
+        var sticky = navbar.offsetTop;
+
+        function myFunction() {
+            if (window.pageYOffset >= sticky) {
+                navbar.classList.add("sticky")
+            } else {
+                navbar.classList.remove("sticky");
+            }
+        }
+        </script>
+    </div>
+    <div>
+      <br><sub>Title Photo by <a href="https://unsplash.com/@aaronburden?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Aaron Burden</a> on <a href="https://unsplash.com/s/photos/writing?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></sub>
+    </div>
+</body>
+</html>
