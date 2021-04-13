@@ -7,4 +7,4 @@ EssAI promotes writing style practice through a scalable and systematic approach
 *	Scalable: EssAI provides easy-to-use and repeatable writing style exercises that ask students to imitate the styles of master writers as Jane Austen or Mark Twain. 
 *	Systematic: EssAI uses text classification (BERT) and stylometric analysis to provide instantaneous, quantified feedback on similarities and differences to their target. 
 
-For more information, please visit EssAI's homepage: http://essai-writing.site/
+For more information, please visit EssAI's homepage: https://github.com/wcex1994/EssAI/tree/main/Webpage
