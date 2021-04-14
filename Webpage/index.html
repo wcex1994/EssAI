@@ -7,7 +7,7 @@
     <style>
         body {
   margin: 0;
-  font-size: 14px;
+  font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -52,6 +52,11 @@
 .content {
   padding: 20px 50px 20px 50px;
   font-size: 17;
+}
+
+.content2 {
+  padding: 20px 50px 20px 50px;
+  font-size: 12;
 }
 
 .sticky {
@@ -128,8 +133,10 @@
 
 <body>
     <div class="container" id="home">
+      <!---
         <img src="EssAI.png" alt="pen" style="width:1200px;height:500px;">
         <br><br>
+      -->
     </div>
 
     <div id="navbar">
@@ -142,45 +149,102 @@
     </div>
 
     <div id="wrapper">
-        <div class="content" id="about">
-            <br>
-            <h1 id="about">About</h1>
-            <p><strong>Writing is a major curriculum in North America's education system. Many creative writing courses start with imitating well-known authors’ styles as the first step of understanding English writing, and hopefully help develop one’s own style. The overall process requires continuous practices and useful instructor feedback, which is both time and resource intensive.
-              <br><br>To help make writing practice more scalable, EssAI provides online exercises that ask students to replicate the styles of master writers as Jane Austen or Mark Twain, and then use text classification (BERT) and stylometric analysis to provide instant, quantified feedback on the similarities and differences to their target. We intend to use our MVP to contribute to peer and industry learning about how to help students systematically develop their (creative) writing skills through imitation and deliberate practice.
-            </p>
+      <div style="background-color:#CDCDCD" id="home">
+        <div class="content">
+          <h1 id="home">Introducing EssAI</h1>
+          <p>EssAI is a Google Docs extension that provides exercises for high school and college writing instruction. We've designed two machine-learning enabled exercises that are intended to be:
+            <ul>
+              <li><strong>Scalable:</strong> EssAI provides easy-to-use and repeatable writing training that can be customized by instructors across fields and domains.</li>
+              <li><strong>Systematic:</strong> EssAI uses machine learning to enable a rigorous form of training called deliberate practice (described below), both by automating away tedious aspects of the exercises and by providing tight feedback loops.</li>
+            </ul>
+            Our current beta version is framed around the writing styles of Jane Austen and Mark Twain.
+            <br><br>
+            <img alt="EssAI_ui_home" src="EssAI_ui_home.png" style="width:843px;height:605px;">
+          </p>
         </div>
+      </div>
+
+      <div class="content" id="about"><br>
+          <h1 id="about">About</h1>
+          <p>
+            Writing is a vital skill. Unfortunately, it's difficult to apply the best pedagogical practices identified in other fields to writing <sup>[1]</sup>.
+            In particular, writing is often not conducive to "deliberate practice"  (DP), which is seen in the skill development literature as a particularly
+            efficient path to mastery in domains as diverse as chess, athletics, and even creative fields like music <sup>[2]</sup>. DP is characterized by instant feedback, 
+            clear targets, and hyper-focused reflection on the exact nature of errors. All of those are challenging to provide in the writing context: papers can 
+            take weeks to grade, the goal of "good writing" is hazy at best, and without a clear sense of their target, students can't possibly reflect on errors 
+            at the resolution that DP demands.
+            <br><br>
+            To help make writing practice more rigorous and more scalable, EssAI uses machine learning to streamline and modernize some classic exercises <sup>[3]</sup> in writing 
+            pedagogy that lend themselves to deliberate practice. 
+            <br><br>
+          </p>
+          <p>
+            <em><strong>
+            "This tool has the potential to be a more valuable resource to students of creative writing than any given assignment or exercise I've seen currently circulated at the undergraduate level.” 
+            <br><br>- Audrey Greathouse, Novelist & Writing Instructor
+            </em></strong>
+          </p>
+          <br><br>
+          <p>
+            <sub>[1] Kellogg, R.T., Raulerson, B.A. Improving the writing skills of college students. Psychonomic Bulletin & Review 14, 237–242 (2007). 
+              <a href="https://doi.org/10.3758/BF03194058">https://doi.org/10.3758/BF03194058</a></sub><br>
+            <sub>[2] Ericsson, K. A., Krampe, R. T., & Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. 
+              Psychological Review, 100(3), 363-406. doi:10.1037/0033-295X.100.3.363</sub><br>
+            <sub>[3] Edward P. J. Corbett. “The Theory and Practice of Imitation in Classical Rhetoric.” College Composition and Communication, vol. 22, 
+              no. 3, 1971, pp. 243–250. JSTOR, www.jstor.org/stable/356450. Accessed 14 Apr. 2021.</sub>
+          </p>
+      </div>
 
 
-        <div style="background-color:#CDCDCD" id="features">
+        <div style="background-color:#CDCDCD" id="features"><br>
             <div class="content">
-                <br>
                 <h1 id="features">Features</h1>
                 <p>
                   <ul>
-                    <li>Sentence Level Comparison to Author’s Style - User can identify which sentence is a good representation of the target author’s style and which to enhance</li>
-                    <li>Top Metrics for Author - User can compare to top five most important stylometry metrics<sup>[2]</sup> for the author </li>
-                    <li>Sentence Imitation Practice - User can perform Benjamin Franklin style writing<sup>[1]</sup> practice</li>
+                    <li>
+                      <strong>EssAI <em>Primer</em>:</strong> Practice through Comparison
+                      <p>
+                        In EssAI Primer, we update a centuries-old writing routine made famous by Ben Franklin, where students rewrite the works of admired authors in their own words,
+                        then analyze how more experienced practitioners handled the same content. By fixing content, we clear the noise so that students can focus on style. Our algorithms
+                        automate away tedious aspects of the process and provide new ways of analyzing writing structure.
+                        <ul>
+                          <li><strong>Sentence imitation practice</strong> - User can perform Benjamin Franklin style writing <sup>[1]</sup> practice.</li>
+                          <li><strong>Ten stylometric metrics as feedback</strong> - User can compare ten sentence-level stylometry metrics <sup>[2]</sup></li>
+                        </ul>
+                      </p>
+                    </li>
+                    <br><br>
+                    <li>
+                      <strong>EssAI <em>Pro</em>:</strong> Practice through Emulation
+                      <p>
+                        In EssAI pro, we ask students to replicate the styles of master writers like Jane Austen or Mark Twain. In a kind of reverse Turing Test, they then try to "trick" 
+                        our system's text classifier (BERT) into thinking that their text was written by the original author. Students receive instant, continual feedback on which sentences 
+                        were convincing and which were not, and hunt for patterns among their misses and hits before rewriting. With this exercise, we've attempted to develop an engaging cycle 
+                        of attempt, feedback, reflection, and tuning.
+                        <ul>
+                          <li><strong>BERT sentence-level text classification</strong> - User can identify which sentence is a good representation of the target author’s style and which to enhance.
+                             The BERT model is trained upon a pool of books from Project Gutenberg. <sup>[3]</sup></li>
+                        </ul>
+                      </p>
+                    </li>
                   </ul>
                   <br>
                   <p>
-                    <sub>[1] https://thewritepractice.com/writing-lessons-benjamin-franklin/</sub>
-                    <br><sub>[2] https://github.com/Hassaan-Elahi/Writing-Styles-Classification-Using-Stylometric-Analysis </sub>
+                    <sub>[1] <a href="https://thewritepractice.com/writing-lessons-benjamin-franklin/">https://thewritepractice.com/writing-lessons-benjamin-franklin/</a></sub><br>
+                    <sub>[2] We selected the ten stylometry metrics based on user feedback.</sub><br>
+                    <sub>[3] <a href="https://www.gutenberg.org/">https://www.gutenberg.org/</a></sub>
                   </p>
                 </p>
             </div>
         </div>
 
 
-        <div class="content" id="demo">
-                <br />
-                <h1 id="demo">Demo</h1>
-                <p>
-                  <strong>[TODO: Add one GIF/Video]</strong>
-                </p>
+        <div class="content" id="demo"><br>
+          <h1 id="demo">Product Demo</h1>   
+          <iframe width="1120" height="630" src="https://www.youtube.com/embed/VtXsrRLgjr0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
-        <div class="content" id="details" style="background-color:#CDCDCD">
-          <br />
+        <div class="content" id="details" style="background-color:#CDCDCD"><br>
           <h1 id="details">Details</h1>
           <ol>
             <li>Solution Overview</li>
@@ -223,18 +287,17 @@
             </p>
             <br><br>
             <li>References</li>
-              <br>[1]: https://github.com/Hassaan-Elahi/Writing-Styles-Classification-Using-Stylometric-Analysis
-              <br>[2]: https://towardsdatascience.com/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270
-              <br>[3]: https://arxiv.org/pdf/1706.03762.pdf
-              <br>[4]: https://github.com/interpretml/interpret-text
+              <br>[1] https://github.com/Hassaan-Elahi/Writing-Styles-Classification-Using-Stylometric-Analysis
+              <br>[2] https://towardsdatascience.com/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270
+              <br>[3] https://arxiv.org/pdf/1706.03762.pdf
+              <br>[4] https://github.com/interpretml/interpret-text
               <br>[5] http://publications.idiap.ch/downloads/papers/2020/Fabien_ICON2020_2020.pdf
               <br>[6] https://u.cs.biu.ac.il/~koppel/BlogCorpus.htm        
           </ol>
         </div>
 
-        <div style="background-color:white">
-            <br />
-            <div class="content">
+        <div style="background-color:white"><br>
+            <div class="content2">
                 <br />
                 <h1 id="team">About Us</h1>
                 <p>
@@ -249,7 +312,7 @@
                                     <img alt="Kyle Photo" src="kyle.png">
                                     <div class="team_info">
                                         <br><br><p>Kyle Eschen<br />
-                                            <a href="mailto:kyleeschen@ischool.berkeley.edu">kyleeschen@ischool.berkeley.edu</a><br />
+                                            <a href="mailto:kyleeschen@ischool.berkeley.edu" style="font-size:14px;">kyleeschen@ischool.berkeley.edu</a><br />
                                         </p>
                                     </div>
                                 </div>
@@ -259,7 +322,7 @@
                                     <img alt="Girija Photo" src="girija.png">
                                     <div class="team_info">
                                       <br><br><p>Girija Ghali<br />
-                                            <a href="mailto:girijaghali@ischool.berkeley.edu">girijaghali@ischool.berkeley.edu</a><br />
+                                            <a href="mailto:girijaghali@ischool.berkeley.edu" style="font-size:14px;">girijaghali@ischool.berkeley.edu</a><br />
                                         </p>
                                     </div>
                                 </div>
@@ -269,7 +332,7 @@
                                     <img alt="Hailey Photo" src="hailey.png">
                                     <div class="team_info">
                                       <br><br><p>Hailey Wu<br />
-                                            <a href="mailto:haileywu@ischool.berkeley.edu">haileywu@ischool.berkeley.edu</a><br />
+                                            <a href="mailto:haileywu@ischool.berkeley.edu" style="font-size:14px;">haileywu@ischool.berkeley.edu</a><br />
                                         </p>
                                     </div>
                                 </div>
@@ -279,7 +342,7 @@
                                     <img alt="Stanley Photo" src="stanley.png">
                                     <div class="team_info">
                                       <br><br><p>Stanley Ye<br />
-                                        <a href="mailto:stanley.ye@berkeley.edu">stanley.ye@berkeley.edu</a><br />
+                                        <a href="mailto:stanley.ye@berkeley.edu" style="font-size:14px;">stanley.ye@berkeley.edu</a><br />
                                       </p>
                                     </div>
                                 </div>
@@ -305,8 +368,10 @@
         }
         </script>
     </div>
+    <!--
     <div>
       <br><sub>Title Photo by <a href="https://unsplash.com/@aaronburden?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Aaron Burden</a> on <a href="https://unsplash.com/s/photos/writing?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></sub>
     </div>
+    -->
 </body>
 </html>
