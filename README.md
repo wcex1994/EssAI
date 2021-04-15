@@ -1,6 +1,6 @@
 # EssAI
 
-![Alt Text]()
+![Alt Text](https://github.com/wcex1994/EssAI/blob/main/Apps%20Extension%20Code/product.gif)
 
 EssAI is a Google Docs extension that provides exercises for high school and college writing instruction. We've designed two machine-learning enabled exercises that are intended to be:
 
