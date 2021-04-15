@@ -1,10 +1,11 @@
 # EssAI
 
-Writing is a major curriculum in North America's education system. Many creative writing courses start with imitating well-known authors’ styles as the first step of understanding English writing, and hopefully help develop one’s own style. The overall process requires continuous practices and useful instructor feedback, which is both time and resource intensive. 
+EssAI is a Google Docs extension that provides exercises for high school and college writing instruction. We've designed two machine-learning enabled exercises that are intended to be:
 
-EssAI promotes writing style practice through a scalable and systematic approach. 
+* Scalable: EssAI provides easy-to-use and repeatable writing training that can be customized by instructors across fields and domains.
+* Systematic: EssAI uses machine learning to enable a rigorous form of training called deliberate practice (described below), both by automating away tedious aspects of the exercises and by providing tight feedback loops. 
 
-*	Scalable: EssAI provides easy-to-use and repeatable writing style exercises that ask students to imitate the styles of master writers as Jane Austen or Mark Twain. 
-*	Systematic: EssAI uses text classification (BERT) and stylometric analysis to provide instantaneous, quantified feedback on similarities and differences to their target. 
+Our current beta version is framed around the writing styles of Jane Austen and Mark Twain.
 
-For more information, please visit EssAI's homepage: https://github.com/wcex1994/EssAI/tree/main/Webpage
+
+For more information, please visit EssAI's homepage: http://essai-writing.site/
