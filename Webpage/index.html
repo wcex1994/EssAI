@@ -2,10 +2,12 @@
 <html>
 
 <head>
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
     <title>EssAI</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body {
+body {
   margin: 0;
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
@@ -125,13 +127,22 @@
 
 }
 
+.iconify {
+  width: 24px;
+  height: 24px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
 /*.text{
   font-size: 
 }*/
 </style>
 </head>
 
-<body>
+  <body style="background-color:white">
     <div class="container" id="home">
       <!---
         <img src="EssAI.png" alt="pen" style="width:1200px;height:500px;">
@@ -145,28 +156,30 @@
         <a href="#features">Features</a>
         <a href="#demo">Demo</a>
         <a href="#details">Details</a>
-        <a href="#team">About Us</a>
+        <a href="#team">Team</a>
+        <a href="https://github.com/wcex1994/EssAI" target="_blank">GitHub</a>
     </div>
 
     <div id="wrapper">
-      <div style="background-color:#CDCDCD" id="home">
+      <div style="background-color:white" id="home">
         <div class="content">
           <h1 id="home">Introducing EssAI</h1>
-          <p>EssAI is a Google Docs extension that provides exercises for high school and college writing instruction. We've designed two machine-learning enabled exercises that are intended to be:
-            <ul>
+          <p style="text-align: justify; text-justify: inter-word;">
+            EssAI is a Google Docs extension that provides exercises for high school and college writing instruction. We've designed two machine-learning enabled exercises that are intended to be:
+            <ul style="text-align: justify; text-justify: inter-word;">
               <li><strong>Scalable:</strong> EssAI provides easy-to-use and repeatable writing training that can be customized by instructors across fields and domains.</li>
               <li><strong>Systematic:</strong> EssAI uses machine learning to enable a rigorous form of training called deliberate practice (described below), both by automating away tedious aspects of the exercises and by providing tight feedback loops.</li>
             </ul>
             Our current beta version is framed around the writing styles of Jane Austen and Mark Twain.
             <br><br>
-            <img alt="EssAI_ui_home" src="EssAI_ui_home.png" style="width:843px;height:605px;">
+            <img alt="EssAI_home" src="EssAI_home.gif" style="width:1000px;height:500px;">
           </p>
         </div>
       </div>
 
-      <div class="content" id="about"><br>
+      <div class="content" id="about" style="background-color:#FADBD8"><br>
           <h1 id="about">About</h1>
-          <p>
+          <p style="text-align: justify; text-justify: inter-word;">
             Writing is a vital skill. Unfortunately, it's difficult to apply the best pedagogical practices identified in other fields to writing <sup>[1]</sup>.
             In particular, writing is often not conducive to "deliberate practice"  (DP), which is seen in the skill development literature as a particularly
             efficient path to mastery in domains as diverse as chess, athletics, and even creative fields like music <sup>[2]</sup>. DP is characterized by instant feedback, 
@@ -178,13 +191,13 @@
             pedagogy that lend themselves to deliberate practice. 
             <br><br>
           </p>
-          <p>
+          <p style="text-align: justify; text-justify: inter-word;">
             <em><strong>
             "This tool has the potential to be a more valuable resource to students of creative writing than any given assignment or exercise I've seen currently circulated at the undergraduate level.” 
-            <br><br>- Audrey Greathouse, Novelist & Writing Instructor
+            <br><br>- Pilot User (Novelist & Writing Instructor)
             </em></strong>
           </p>
-          <br><br>
+          <br>
           <p>
             <sub>[1] Kellogg, R.T., Raulerson, B.A. Improving the writing skills of college students. Psychonomic Bulletin & Review 14, 237–242 (2007). 
               <a href="https://doi.org/10.3758/BF03194058">https://doi.org/10.3758/BF03194058</a></sub><br>
@@ -196,11 +209,11 @@
       </div>
 
 
-        <div style="background-color:#CDCDCD" id="features"><br>
+        <div style="background-color:white" id="features"><br>
             <div class="content">
                 <h1 id="features">Features</h1>
-                <p>
-                  <ul>
+                <p style="text-align: justify; text-justify: inter-word;">
+                  <ul style="text-align: justify; text-justify: inter-word;">
                     <li>
                       <strong>EssAI <em>Primer</em>:</strong> Practice through Comparison
                       <p>
@@ -208,7 +221,7 @@
                         then analyze how more experienced practitioners handled the same content. By fixing content, we clear the noise so that students can focus on style. Our algorithms
                         automate away tedious aspects of the process and provide new ways of analyzing writing structure.
                         <ul>
-                          <li><strong>Sentence imitation practice</strong> - User can perform Benjamin Franklin style writing <sup>[1]</sup> practice.</li>
+                          <li><strong>Sentence imitation practice</strong> - User can perform Benjamin Franklin <sup>[1]</sup> style writing practice.</li>
                           <li><strong>Ten stylometric metrics as feedback</strong> - User can compare ten sentence-level stylometry metrics <sup>[2]</sup></li>
                         </ul>
                       </p>
@@ -239,54 +252,100 @@
         </div>
 
 
-        <div class="content" id="demo"><br>
+        <div class="content" id="demo" style="background-color:#FADBD8"><br>
           <h1 id="demo">Product Demo</h1>   
           <iframe width="1120" height="630" src="https://www.youtube.com/embed/VtXsrRLgjr0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
 
-        <div class="content" id="details" style="background-color:#CDCDCD"><br>
-          <h1 id="details">Details</h1>
+        <div class="content" id="details" style="background-color:white"><br>
+          <h1 id="details">How It Works</h1>
           <ol>
-            <li>Solution Overview</li>
-            <p>
-              Users will first type in paragraphs to be evaluated and select the author to compare with. EssAI will clean the input texts and split them into sentence-level for BERT evaluation, which will return classification probabilities. Users will see color-coded sentences based on probabilities. Meanwhile, EssAI will also calculate values for the top five most important metrics for the target author as supportive feedback for potential improvement.
-              <br><br>If users want deliberate practice before the evaluation, EssAI also provides an environment for sentence-by-sentence imitation where users will select a sample paragraph from the author, take notes, blur the original sentences, and try to rewrite the sentence. Popular stylometric metrics based on user feedback<sup>[1]</sup> will also be calculated for each sentence. 
+            <li><strong>Solution Overview</strong></li>
+            <p style="text-align: justify; text-justify: inter-word;">
+              <strong>EssAI Primer</strong>
+              <br><br>
+              Users will first select a sample paragraph from the author and EssAI Primer will separate paragraphs to sentence level, 
+              offering some text structure hints. Then the user can blur original sentences and try to rewrite the context in their own understanding. 
+              Popular stylometric metrics based on user feedback (built upon stylometric analysis from research papers <sub>[1]</sub>) are also calculated for each sentence pair as feedback for comparison. 
+              <br><br>
+              <img alt="EssAI_Primer_technical" src="EssAI_Primer_technical.png" style="width:1000px;height:500px;">
             </p>
             <br><br>
-            <li>System Architecture</li>
+            <p style="text-align: justify; text-justify: inter-word;">
+              <strong>EssAI Pro</strong>
+              <br><br>
+              Users will first type in paragraphs to be evaluated and select the author to be compared with. 
+              EssAI Pro will clean the input texts and split them into sentence-level for BERT evaluation, 
+              which will return authorship classification probabilities. Users will see color-coded sentences based on probabilities.
+              <br><br>
+              <img alt="EssAI_Pro_technical" src="EssAI_Pro_technical.png" style="width:1000px;height:500px;">
+            </p>
+            <br><br>
+            <li><strong>System Architecture</strong></li>
             <br>
-            <img alt="lambda" src="lambda.png" style="width:1000px;height:500px;">
-            <p>
-                <br>There are two major UIs for our project - one Google Doc Adds-on for BERT evaluation and another adds-on option for sentence-level deliberate practice.
-                <br><br>We deployed the data manipulation pipelines in AWS Lambda, used Google Colab and Azure Machine Learning Service (AML) to train and track models, and deployed a real-time inference endpoint for each author on Azure Kubernetes Services (AKS) with GPU. Depending on the frontend request, Lambda will either return stylometric metrics calculation or trigger BERT inference.
-                <br><br>Due to cost management, we paused our AKS cluster most of the time. If you want to have a demo, please contact us.
+            <img alt="EssAI_system_architecture" src="EssAI_system_architecture.png" style="width:1000px;height:500px;">
+            <p style="text-align: justify; text-justify: inter-word;">
+              <ul style="text-align: justify; text-justify: inter-word;">
+                <li>The front-end of EssAI is on Google Doc Extension in JavaScript, CSS and HTML.</li>
+                <li>The data manipulation pipelines are deployed in AWS Lambda. Depending on the front-end request, Lambda will either return stylometric calculation or trigger BERT inference. </li>
+                <li>Google Colab and Azure Machine Learning Service (AML) are used for model training and tracking.</li>
+                <li>The final models are deployed as real-time inference endpoints on Azure Kubernetes Services (AKS) with GPU. Due to cost management, we pause our AKS cluster for most of the time. If you want to have a demo, please contact us.</li>
+              </ul>
             </p>
             <br><br>
-            <li>Model Architecture - BERT</li>
-            <br>
-            <img alt="bert" src="bert.png" style="width:1000px;height:700px;">
-            <p>
-              Bidirectional Encoder Representations from Transformers (BERT) is published by Google AI in 2017, with application of the bidirectional training of Transformer, a popular attention model, to language modelling [2]. By using a masked language model, it is now possible to learn the context of each word from the words appearing both before and after it. 
-              <br><br>We used the pre-trained BERT model (BERT-base) with 12-layer, 768-hidden, 12-heads, 110M parameters that was trained on English text using 3.3 Billion words total [3]. We freezed the entire architecture and attached a dense layer and a softmax layer to the architecture as fine-tuning for classification. 
-              <br><br>Additionally, to understand better of how BERT explains the style classification, instead of a blackbox, we used an open-source interpretability library - interpret-text [4]. The advantage is being able to visualize word-level local feature importances to see what brings positive importance to the classification of the texts. However, as an overhead, the library required to use its own BERT wrapper (over Hugging Face implementation) which restricts some tuning opportunities. 
-              <br><br>We mostly followed the BertAA: BERT fine-tuning for Authorship Attribution<sup>[5]</sup> implementation. One difference we made is that instead of all authors being in one BERT model, we separate each write for one model. Because our users would not care how similar they are to another writer, and the BERT model should serve its purpose to identify similarity to the one target author selected. 
+            <li><strong>Model Architecture - BERT</strong></li>
+            <p style="text-align: justify; text-justify: inter-word;">
+              Bidirectional Encoder Representations from Transformers (BERT) is published by Google AI in 2017, with application of the 
+              bidirectional training of Transformer, a popular attention model, to language modelling <sub>[2]</sub>. By using a masked language model, 
+              it is now possible to learn the context of each word from the words appearing both before and after it. 
+              <br><br>
+              We mostly followed the BertAA: BERT fine-tuning for Authorship Attribution <sub>[5]</sub> implementation. We used the pre-trained BERT model 
+              (BERT-base) with 12-layer, 768-hidden, 12-heads, 110M parameters that was trained on English text using 3.3 billion words total [3]. 
+              We freeze the entire architecture and attach a dense layer and a softmax layer to the architecture as fine-tuning for classification. 
+              One difference we made was that instead of all authors belonging in one BERT model, we separated each writer for one BERT model. 
+              The reason is because our users would probably not care how similar they are to other writers who are not their target author, and the 
+              BERT model should serve its purpose to identify similarity to the one target author selected. 
+              <br><br>
+              Additionally, to understand better how the “black box” BERT explains the style classification, we used an open-source library, 
+              interpret-text <sub>[4]</sub>, for model interpretability. It offers visualizations on the word-level local feature importance. However, as an 
+              overhead, the library requires to use its own BERT wrapper (not compatible with self-implemented Hugging Face model). This restricts 
+              some tuning opportunities for accuracy enhancement.
             </p>
             <br><br>
-            <li>Model Evaluation</li>
-            <p>
-              We use classification accuracy as the evaluation metric. Different authors have very distinctive accuracies. We are able to reach 99.1% for Jane Austen and 95.4% for Mark Twain. For Scott Fitzgerald and Charles Dickens, we ended at 60.3% and 72.6%. 
-              <br><br>To enhance the accuracy, we first tried to expand the datasets. Since we trained one BERT model for each author, each can have its own dataset. Thus, we included various other random authors’ books, which helped BERT identify Mark Twain better. We also tuned several hyper-parameters such as epochs, batch size, and max token lengths, but they only enhanced the accuracy a little. Unfortunately with the limitation of the BERT wrapper we implemented with interpret-text, there are only few tuning parameters available. Moreover, we tried to use stylometric metric values as proxies for representing the text style, and see if a simple logistic regression can be a good model. We did not see much benefit out of the base model on the sentence level classification. 
-              <br><br>For the test dataset, we used blog corpus [6] to see how “common” our BERT models would mark one blog as having similar style to these authors. It should not identify the majority as positive with high probability. The BERT models for Jane Austen and Mark Twain matched our assumption, but the other two did not. 
-              <br><br>With concerns of Scott Fitzgerald and Charles Dickens accuracies and potential misleading results, we decided to restrict our scope to be Jane Austen and Mark Twain for our MVP.
+            <li><strong>Model Evaluation</strong></li>
+            <p style="text-align: justify; text-justify: inter-word;">
+              We use classification accuracy as the evaluation metric. Different authors have very distinctive accuracies. We can reach 99.1% for 
+              Jane Austen and 95.4% for Mark Twain. For some other authors that are not included in the final MVP scope, such as Scott Fitzgerald 
+              and Charles Dickens, we ended at 60.3% and 72.6%. 
+              <br><br>
+              To enhance the accuracy, we first tried to expand the datasets. Since we trained one BERT model for each author, each can have its 
+              own dataset. Thus, we included more books from random authors into our pool. This method increased the accuracy for Mark Twain. We 
+              also tuned several hyper-parameters, such as number of epochs, batch size, and max token length, but they did not give significant 
+              enhancement. With the limitation of the BERT wrapper we implemented with the open source library interpret-text, unfortunately, 
+              there were only few tuning parameters available.
+              <br><br>
+              Additionally, we tried to use 29 stylometric metric values as proxies for representing the text style, plug them into a simple 
+              logistic regression, and evaluate the classification accuracy. We did not see much benefit out of the initial few experiments of 
+              the stylometric logistic regression.
+              <br><br>
+              Apart from the train-validate-test dataset for famous authors’ books, we also evaluated our BERT models with the blog corpus <sub>[6]</sub> 
+              to see how it reacted to daily/common text. We extracted 2000 randomly selected blogs, separated to sentence level, and evaluated 
+              their similarity to Jane Austen and Mark Twain. As expected, the majority of sentences were identified as not similar to the target 
+              author. For example, only 4000 out of 35000 sentences were marked as Jane Austen style.
             </p>
             <br><br>
-            <li>Model Future Development</li>
-            <p>
-              By running the AutoML pipelines with BERT for Scott Fitzgerald and Charles Dickens, we see models can reach 99.18% and 97.56% respectively with the existing datasets. The limitation might come from our BERT wrapper with interpret-text. Future development can look at implementing with Hugging Face models with more tuning opportunities. 
-              <br><br>Additionally, it will be interesting to see a combination of BERT text inputs and stylometric values into one logistic regression to see if it helps capture the writing style better. 
+            <li><strong>Model Future Development</strong></li>
+            <p style="text-align: justify; text-justify: inter-word;">
+              Initially we have four authors within our MVP scope: Scott Fitzgerald, Charles Dickens, Jane Austen, and Mark Twain. With concerns 
+              of Scott Fitzgerald and Charles Dickens model accuracies and potential misleading results, we decided to restrict our scope to be 
+              Jane Austen and Mark Twain for our MVP.
+              <br><br>
+              However, by running BERT AutoML pipelines for Scott Fitzgerald and Charles Dickens with the existing datasets, we saw models could 
+              reach 99.18% and 97.56% respectively. The tuning limitation might come from our BERT wrapper implementation from the interpret-text 
+              library. Future development can look at developing Scott Fitzgerald and Charles Dickens models directly from Hugging Face pre-trained models.
             </p>
             <br><br>
-            <li>References</li>
+            <li><strong>References</strong></li>
               <br>[1] https://github.com/Hassaan-Elahi/Writing-Styles-Classification-Using-Stylometric-Analysis
               <br>[2] https://towardsdatascience.com/bert-explained-state-of-the-art-language-model-for-nlp-f8b21a9b6270
               <br>[3] https://arxiv.org/pdf/1706.03762.pdf
@@ -296,23 +355,26 @@
           </ol>
         </div>
 
-        <div style="background-color:white"><br>
+        <div style="background-color:#FADBD8"><br>
             <div class="content2">
-                <br />
                 <h1 id="team">About Us</h1>
-                <p>
-                  We are a team of UC Berkeley Master of Information and Data Science students. Our mission is to use the latest advances in data science to facilitate general education in a scalable way. 
+                <p style="text-align: justify; text-justify: inter-word;">
+                  We are a team of UC Berkeley Master of Information and Data Science students.
+                  <br>Our mission is to use the latest advances in data science to facilitate general education in a scalable way. 
                 </p>
-                <p>
-                    <h4>Team Members</h4>
-                    <table cellpadding="24px">
+                <br>
+                <h1>Team Members</h1>
+                <!--<p>-->
+                    <table cellpadding="20px">
                         <tr>
                             <td>
                                 <div class="team_photo">
                                     <img alt="Kyle Photo" src="kyle.png">
                                     <div class="team_info">
                                         <br><br><p>Kyle Eschen<br />
-                                            <a href="mailto:kyleeschen@ischool.berkeley.edu" style="font-size:14px;">kyleeschen@ischool.berkeley.edu</a><br />
+                                            <a href="mailto:kyleeschen@ischool.berkeley.edu" style="text-decoration:none;">
+                                              <span class="iconify" data-icon="carbon:email" data-inline="false"></span>
+                                            </a>
                                         </p>
                                     </div>
                                 </div>
@@ -322,7 +384,12 @@
                                     <img alt="Girija Photo" src="girija.png">
                                     <div class="team_info">
                                       <br><br><p>Girija Ghali<br />
-                                            <a href="mailto:girijaghali@ischool.berkeley.edu" style="font-size:14px;">girijaghali@ischool.berkeley.edu</a><br />
+                                            <a href="mailto:girijaghali@ischool.berkeley.edu" style="text-decoration:none;">
+                                              <span class="iconify" data-icon="carbon:email" data-inline="false"></span>
+                                            </a>
+                                            <a href="https://www.linkedin.com/in/girijaghali/" target="_blank" style="text-decoration:none;">
+                                              <span class="iconify" data-icon="logos:linkedin-icon" data-inline="false"></span>
+                                            </a>
                                         </p>
                                     </div>
                                 </div>
@@ -332,7 +399,12 @@
                                     <img alt="Hailey Photo" src="hailey.png">
                                     <div class="team_info">
                                       <br><br><p>Hailey Wu<br />
-                                            <a href="mailto:haileywu@ischool.berkeley.edu" style="font-size:14px;">haileywu@ischool.berkeley.edu</a><br />
+                                            <a href="mailto:haileywu@ischool.berkeley.edu" style="text-decoration:none;">
+                                              <span class="iconify" data-icon="carbon:email" data-inline="false"></span>
+                                            </a>
+                                            <a href="https://www.linkedin.com/in/haileywuqianqian/" target="_blank" style="text-decoration:none;">
+                                              <span class="iconify" data-icon="logos:linkedin-icon" data-inline="false"></span>
+                                            </a>
                                         </p>
                                     </div>
                                 </div>
@@ -342,15 +414,23 @@
                                     <img alt="Stanley Photo" src="stanley.png">
                                     <div class="team_info">
                                       <br><br><p>Stanley Ye<br />
-                                        <a href="mailto:stanley.ye@berkeley.edu" style="font-size:14px;">stanley.ye@berkeley.edu</a><br />
+                                        <a href="mailto:stanley.ye@berkeley.edu" style="text-decoration:none;">
+                                          <span class="iconify" data-icon="carbon:email" data-inline="false"></span>
+                                        </a>
+                                        <a href="https://www.linkedin.com/in/stanley-ye/" target="_blank" style="text-decoration:none;">
+                                          <span class="iconify" data-icon="logos:linkedin-icon" data-inline="false"></span>
+                                        </a>
+                                        <a href="https://github.com/Stanley-Ye/" target="_blank" style="text-decoration:none;">
+                                          <span class="iconify" data-icon="akar-icons:github-fill" data-inline="false"></span>
+                                        </a>
                                       </p>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     </table>
-
-                </p>
+                <!--</p>-->
+              <br><br><br><br>
             </div>
         </div>
         <script>
@@ -368,10 +448,5 @@
         }
         </script>
     </div>
-    <!--
-    <div>
-      <br><sub>Title Photo by <a href="https://unsplash.com/@aaronburden?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Aaron Burden</a> on <a href="https://unsplash.com/s/photos/writing?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a></sub>
-    </div>
-    -->
 </body>
 </html>
