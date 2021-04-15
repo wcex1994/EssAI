@@ -1,6 +1,6 @@
 # EssAI
 
-<p align = "center">
+<p>
   <img src = "https://github.com/wcex1994/EssAI/blob/main/Apps%20Extension%20Code/product.gif" ></img>
 </p>
 
