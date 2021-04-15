@@ -1,3 +1,8 @@
+# The specific stylometric calculations in this file are modified versions of code from here.
+# We changed them to compose with our existing pipeline infrastructure.
+# https://github.com/Hassaan-Elahi/Writing-Styles-Classification-Using-Stylometric-Analysis
+
+
 #=================================================================
 # Load Libraries
 #=================================================================
